@@ -1,4 +1,4 @@
-from cleo import argument
+from cleo.helpers import argument
 
 from .env_command import EnvCommand
 
@@ -11,13 +11,6 @@ class RunCommand(EnvCommand):
     arguments = [
         argument("args", "The command and arguments/options to run.", multiple=True)
     ]
-
-    def __init__(self):  # type: () -> None
-        from poetry.console.args.run_args_parser import RunArgsParser
-
-        super(RunCommand, self).__init__()
-
-        self.config.set_args_parser(RunArgsParser())
 
     def handle(self):
         args = self.argument("args")
